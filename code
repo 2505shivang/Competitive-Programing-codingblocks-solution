@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+
+ll combination(ll n, ll_k) {
+	if (n == k || k == 1) {
+		return 1;
+	}
+
+	ll ans = 1;
+	ll denum  = 1;
+	for (ll i = n; i >= k; --i) {
+		ans = ans * i;
+		ans = ans / denum;
+		denum++;
+	}
+
+	return ans;
+}
+
+ll catalanNumber(ll n) {
+	if (n == 0) {
+		return 1;
+	}
+
+	ll ans = combination(2 * n, n);
+
+	return ans / n + 1;
+}
+
+void input() {
+	ll t;
+	cin >> t;
+	while (t--) {
+		ll n;
+		cin >> n;
+		ll ans = catalanNumber(n);
+		cout << ans << endl;
+	}
+}
+
+int main() {
+#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+#endif
+	input();
+	return 0;
+}
